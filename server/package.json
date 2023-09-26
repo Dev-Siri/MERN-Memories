@@ -5,9 +5,13 @@
   "type": "module",
   "main": ".node/index.js",
   "private": true,
+  "engines": {
+    "node": "<=20.7.0"
+  },
   "scripts": {
     "dev": "node --loader=ts-node/esm --env-file=.env --watch index.ts",
-    "start": "tsc && node --env-file=.env ."
+    "build": "tsc",
+    "start": "pnpm run build && node --env-file=.env ."
   },
   "keywords": [
     "server",
