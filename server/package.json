@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "node --loader=ts-node/esm --env-file=.env --watch index.ts",
     "build": "tsc",
-    "start": "pnpm run build && node --env-file=.env ."
+    "start": "node --env-file=.env ."
   },
   "keywords": [
     "server",
