@@ -6,7 +6,7 @@ import useAuthStore from "./store/auth";
 
 import Navbar from "./components/Navbar/Navbar";
 import Auth from "./pages/Auth/Auth";
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home";
 
 export default function App() {
   const { user, setUser } = useAuthStore();

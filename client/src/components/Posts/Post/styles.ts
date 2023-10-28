@@ -1,12 +1,13 @@
-const styles = () => ({
+const styles = (extraSmall: boolean) => ({
   card: {
     borderRadius: 2,
-    width: 430,
+    width: extraSmall ? "100%" : 430,
   },
   content: {
     display: "flex",
     flexDirection: "column",
     alignItems: "start",
+    width: "100%",
   },
   overlay: {
     position: "absolute",

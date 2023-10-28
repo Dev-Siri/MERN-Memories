@@ -7,6 +7,7 @@ import {
   IconButton,
   Tooltip,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,6 +16,7 @@ import useStyles from "./styles";
 
 export default function Navbar() {
   const { user, setUser } = useAuthStore();
+  const shouldShowLogoText = useMediaQuery("(min-width: 724px)");
   const navigate = useNavigate();
   const styles = useStyles();
 
@@ -30,7 +32,9 @@ export default function Navbar() {
       <Box sx={styles.container}>
         <Link to="/" style={styles.logo}>
           <img src="/logo.png" alt="logo" height={60} width={60} />
-          <img src="/logo-txt.png" alt="logo text" height={50} width={270} />
+          {shouldShowLogoText && (
+            <img src="/logo-txt.png" alt="logo text" height={50} width={270} />
+          )}
         </Link>
         {user ? (
           <Box display="flex" gap={1} alignItems="center">

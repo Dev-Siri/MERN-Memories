@@ -8,6 +8,7 @@ import {
   CardMedia,
   IconButton,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, type MouseEvent } from "react";
@@ -17,8 +18,9 @@ import type { Post } from "../../../types";
 import { deletePost, likePost } from "../../../api";
 import useAuthStore from "../../../store/auth";
 import usePostStore from "../../../store/post";
-import { getRelativeTime } from "../../../utils/time";
 import useStyles from "./styles";
+
+import Timestamp from "../../Timestamp";
 
 export default function Post({
   _id,
@@ -33,9 +35,10 @@ export default function Post({
   const [likeCount, setLikeCount] = useState(likes.length);
 
   const user = useAuthStore((state) => state.user);
+  const extraSmall = useMediaQuery("(max-width: 650px)");
   const { setCurrentPost } = usePostStore();
   const queryClient = useQueryClient();
-  const styles = useStyles();
+  const styles = useStyles(extraSmall);
 
   const { mutate: deletePostMutation } = useMutation({
     mutationFn: deletePost,
@@ -80,9 +83,7 @@ export default function Post({
               <Typography color="white" variant="h6">
                 {creator}
               </Typography>
-              <Typography color="white" variant="caption">
-                {getRelativeTime(createdAt)}
-              </Typography>
+              <Timestamp createdAt={createdAt} />
             </Box>
             {/* @ts-expect-error */}
             <IconButton

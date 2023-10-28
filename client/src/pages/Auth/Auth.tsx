@@ -7,6 +7,7 @@ import {
   Paper,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import jwtDecode from "jwt-decode";
 import { useState, type FormEvent } from "react";
@@ -25,7 +26,8 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const styles = useStyles();
+  const medium = useMediaQuery("(max-width: 850px)");
+  const styles = useStyles(medium);
   const navigate = useNavigate();
   const { setUser } = useAuthStore();
   const { mutate, isLoading } = useMutation({
@@ -57,7 +59,13 @@ export default function Auth() {
   }
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" p={10}>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      py={10}
+      px={medium ? 4 : 10}
+    >
       <Paper component="form" sx={styles.form} onSubmit={handleSubmit}>
         <Typography variant="h5">
           {isSignup ? "Create an account" : "Login to your account"}

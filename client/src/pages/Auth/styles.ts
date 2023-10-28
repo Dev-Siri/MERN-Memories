@@ -1,7 +1,7 @@
-const styles = () => ({
+const styles = (medium: boolean) => ({
   form: {
     p: 2,
-    width: "40%",
+    width: medium ? "100%" : "40%",
     textAlign: "center",
   },
   lockIcon: {
